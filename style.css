@@ -19,6 +19,7 @@
 :root{
     --soft-blue: hsl(215, 51%, 70%);
     --cyan: hsl(178, 100%, 50%);
+    --cyan-values: 178, 100%, 50%;
 
     --very-dark-blue-main: hsl(217, 54%, 11%);
     --very-dark-blue-card: hsl(216, 50%, 16%);
@@ -56,7 +57,7 @@ a{
     text-decoration: none;
 }
 
-footer{
+.footer{
     border-top: 1px solid var(--very-dark-blue-line);
     display: flex;
     align-items: center;
@@ -80,8 +81,25 @@ footer{
     position: relative;
 }
 
-.preview:hover .overlay{
-    opacity: .5;
+.preview img{
+    display: block;
+}
+
+.preview::before{
+    background-color: hsla(178, 100%, 50%, .5);
+    background-image: url('images/icon-view.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: .5em;
+    opacity: 0;
+}
+
+.preview:hover::before{
+    opacity: 1;
 }
 
 .overlay{background-color: var(--cyan);}
@@ -118,14 +136,21 @@ footer{
 
 .value{color:var(--cyan);}
 
-.stats, .stats div{
+.stats li::marker{
+    color:transparent;
+}
+
+.stats{
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.stats div{
-    gap: 1ch;
+.stats > *{
+    display: flex;
+    align-items: center;
+    gap: .5em;
 }
 
 a:hover{color: var(--cyan);}
